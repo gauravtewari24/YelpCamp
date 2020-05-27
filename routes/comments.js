@@ -45,7 +45,7 @@ router.post("/",middleware.isLoggedIn,function(req, res){
        }
    });
 });
-router.get("/:comment_id/edit", middleware.checkCommentOwnership,middleware.checkUserComment, function(req, res){
+router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
     Comment.findById(req.params.comment_id, function(err, foundComment){
        if(err){
            res.redirect("back");
@@ -67,7 +67,7 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership,middleware.chec
  });
  
  // COMMENT DESTROY ROUTE
- router.delete("/:comment_id", middleware.checkCommentOwnership,middleware.checkUserComment, function(req, res){
+ router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, res){
      //findByIdAndRemove
      Comment.findByIdAndRemove(req.params.comment_id, function(err){
         if(err){
